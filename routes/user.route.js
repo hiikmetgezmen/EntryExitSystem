@@ -3,7 +3,8 @@ import express from "express";
 const router = express.Router();
 
 router.get('/profile',async (req,res,next)=>{
-    res.render("profile");
+    const profiles = req.user;
+    res.render("profile",{profiles});
 });
 
 export default router;

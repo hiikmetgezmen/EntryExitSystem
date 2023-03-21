@@ -1,0 +1,31 @@
+<%- include('./layout/flash-messages.ejs') %>
+
+
+    <form id="register-form" action="/auth/register?redirectUrl=<%=redirectUrl %>&modalName=<%=modalName %>"
+        method="post" class="lg-form">
+        <div>
+
+            <label for="email">Email/Username</label>
+            <input type="text" name="email" id="email" value="<%=locals.email ? email : ''  %> " />
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+        </div>
+        <div>
+            <label for="password2">Confirm password</label>
+            <input type="password" name="password2" id="password2" />
+        </div>
+        <% if (user) { %>
+            <% if (user.role==='ADMIN' ) { %>
+                <select name="role" id="role">
+                    <option value="ADMIN">Admin</option>
+                    <option value="MODERATOR">Moderator</option>
+                    <option value="PERSON">Person</option>
+                </select>
+                <% } %>
+                    <% } %>
+                        <div>
+                            <input type="submit" value="Register" data-modal="register" />
+                        </div>
+    </form>

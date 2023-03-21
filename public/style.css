@@ -156,9 +156,6 @@ thead th:nth-child(1) {
   max-width: 44px;
 }
 
-tbody tr:hover {
-  /* background-color: #fdf2f8; */
-}
 
 tbody tr td {
   padding: 8px 0;

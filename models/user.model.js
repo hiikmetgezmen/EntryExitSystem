@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import createHttpError from "http-errors";
+import {roles} from "../utils/constants.js";
 
 const userSchema = new mongoose.Schema({
     email:{
@@ -12,6 +13,11 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    role:{
+        type:String,
+        enum:[roles.admin,roles.moderator,roles.person],
+        default:roles.person
     }
 });
 
@@ -21,8 +27,13 @@ userSchema.pre('save',async function(next){
         {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(this.password,salt);
-        this.password = hashedPassword; 
+        this.password = hashedPassword;
+        if(this.email === process.env.ADMIN.toLocaleLowerCase())
+        {
+            this.role = roles.admin;
+        } 
         }
+        
         next();
     } catch (error) {
         

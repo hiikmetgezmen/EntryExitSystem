@@ -1,0 +1,45 @@
+.modal_container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal_container.show{
+    pointer-events: auto;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal{
+    border-radius: 5px;
+    padding: 30px 50px;
+    width: 600px;
+    max-width: 100%;
+    background-color: white;
+    position: relative;
+}
+
+.modal .modal-close{
+    position: absolute;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    top: 0;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 0 5px 0 0;
+}
+
+.modal .modal-close:hover{
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
+}
